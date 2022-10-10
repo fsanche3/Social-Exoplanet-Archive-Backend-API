@@ -30,9 +30,8 @@ public class JwtUtil {
    public int getId(String token) throws UnsupportedEncodingException {
 	   
 		int id = -1;
-		
+
 		try {
-			
 			JWTVerifier verifier = getJwtVerifierr();
 		    DecodedJWT jwt = verifier.verify(token);
 		    Map<String, Claim> claims = jwt.getClaims();  
@@ -40,7 +39,7 @@ public class JwtUtil {
 		    if ( claims.containsKey("id") ){
 		    	Claim c = claims.get("id");
 		    	id = c.asInt();
-		    }
+		    } 
 		    
 		} catch (JWTVerificationException exception){
 		    //Invalid signature/claims
