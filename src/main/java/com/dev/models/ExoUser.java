@@ -28,7 +28,7 @@ public class ExoUser {
 	private String img;
 	
 	@OneToMany
-	@JoinColumn(name="user_id")
+	@JoinColumn(name="userid")
 	@JsonIgnore
 	private List<Post> post;
 

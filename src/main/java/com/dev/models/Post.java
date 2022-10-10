@@ -29,11 +29,10 @@ public class Post {
 	private String img_url;
 	private String planet;
 	private Timestamp date;
+	private int parent_id;
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
-	private ExoUser user_id;
-	@OneToMany(cascade = CascadeType.ALL)
-	private Set<Post> comments;
+	@JoinColumn(name = "author", referencedColumnName = "id")
+	private ExoUser author;
 	@ManyToMany
 	@JoinTable(name = "liked_post", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<ExoUser> users;

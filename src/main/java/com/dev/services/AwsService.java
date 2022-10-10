@@ -33,7 +33,7 @@ public class AwsService {
         String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
         s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
         fileObj.delete();
-        return fileName;
+        return s3Client.getUrl(bucketName, fileName).toString();
     }
 
 
