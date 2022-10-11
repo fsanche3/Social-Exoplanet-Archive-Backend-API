@@ -3,6 +3,7 @@ package com.dev.controllers;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -41,14 +42,26 @@ public class PostController {
 	}
 	
 	@GetMapping("/user/{id}")
-	public ResponseEntity<List<PostDto>> uploadPost(@PathVariable("id") int user_id){
-        return new ResponseEntity<>(postServ.findByUserId(user_id), HttpStatus.OK);
-
+	public ResponseEntity<List<PostDto>> getPostByUser(@PathVariable("id") int id){
+			ExoUser user = userServ.findById(id).get();
+	        return new ResponseEntity<>(postServ.findPostByUserId(user), HttpStatus.OK);
+	}
+	
+	@GetMapping("/user/comments/{id}")
+	public ResponseEntity<List<PostDto>> getCommentsByUser(@PathVariable("id") int id){
+			ExoUser user = userServ.findById(id).get();
+	        return new ResponseEntity<>(postServ.findCommentsByUserId(user), HttpStatus.OK);
 	}
 	
 	@GetMapping("/{planet}")
-	public ResponseEntity<List<PostDto>> uploadPost(@PathVariable("planet") String planet){
+	public ResponseEntity<List<PostDto>> getPostsByPlanet(@PathVariable("planet") String planet){
         return new ResponseEntity<>(postServ.findByPlanet(planet), HttpStatus.OK);
+	}
+
+	@GetMapping("/post-comments/{post}")
+	public ResponseEntity<List<PostDto>> getCommentsByPost(@PathVariable("post") int id){
+        return new ResponseEntity<>(postServ.findCommentsByPostId(id), HttpStatus.OK);
+
 	}
 
 	

@@ -1,5 +1,6 @@
 package com.dev.models.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dev.models.ExoUser;
@@ -12,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @NoArgsConstructor @Data
 public class ExoUserDto {
 
+	private int id;
 	private String username;
 	private String img;
-	private List<Post> post;
 	
 	public ExoUserDto(ExoUser user) {
+		this.id = user.getId();
 		this.username = user.getUsername();
 		this.img = user.getImg();
-		this.post = user.getPost();
 	}
 }

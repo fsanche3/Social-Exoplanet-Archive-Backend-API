@@ -28,11 +28,11 @@ public class ExoUser {
 	private String img;
 	
 	@OneToMany
-	@JoinColumn(name="userid")
+	@JoinColumn(name="author")
 	@JsonIgnore
 	private List<Post> post;
 
-	public ExoUser(int id, String username, String password, String img, List<Post> post) {
+	public ExoUser(int id, String username, String password, String img) {
 		super();
 		this.id = id;
 		this.username = username;

@@ -40,7 +40,7 @@ public class ExoUserService {
 		} 			
 
 		log.info("Login complete");
-		return new ExoUser(userList.get(0).getId(), userList.get(0).getUsername(), userList.get(0).getPassword(), userList.get(0).getImg(), userList.get(0).getPost());	
+		return new ExoUser(userList.get(0).getId(), userList.get(0).getUsername(), userList.get(0).getPassword(), userList.get(0).getImg());	
 		
 	}
 	

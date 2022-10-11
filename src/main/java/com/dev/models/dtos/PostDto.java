@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.dev.models.ExoUser;
 import com.dev.models.Post;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
