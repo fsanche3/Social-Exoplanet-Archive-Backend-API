@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.dev.models.ExoUser;
+import com.dev.models.dtos.ExoUserDto;
 import com.dev.models.dtos.LoginRequest;
 import com.dev.repos.ExoUserRepo;
 
@@ -22,6 +23,10 @@ public class ExoUserService {
 	
 	public Optional<ExoUser> findById(int id) {
 		return userRepo.findById(id);
+	}
+	
+	public void upsert(ExoUser user) {
+		userRepo.save(user);
 	}
 	
 	public ExoUser verifyAuth(LoginRequest body) {

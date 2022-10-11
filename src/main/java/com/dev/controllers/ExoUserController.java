@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.models.ExoUser;
+import com.dev.models.dtos.ExoUserDto;
 import com.dev.services.AwsService;
 import com.dev.services.ExoUserService;
 import com.dev.utils.JwtUtil;
@@ -34,10 +37,23 @@ public class ExoUserController {
 		this.jwt = jwt;
 	}
 	
+	@PutMapping("/update-img")
+	public ResponseEntity<Boolean> updateUser(@RequestBody ExoUser exo, 
+			@RequestHeader(value = "Authorization", required = true) String authorization) throws UnsupportedEncodingException
+
+	{
+		ExoUser user = userServ.findById(jwt.getId(authorization)).get();
+		user.setImg(exo.getImg());
+		
+		userServ.upsert(user);
+	       return new ResponseEntity<>(true, HttpStatus.OK);
+
+	}
+	
 	@PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file,
     		@RequestHeader(value = "Authorization", required = true) String authorization) throws UnsupportedEncodingException
- {	
+	{	
        return new ResponseEntity<>(awsServ.uploadFile(file), HttpStatus.OK);
     }
 
