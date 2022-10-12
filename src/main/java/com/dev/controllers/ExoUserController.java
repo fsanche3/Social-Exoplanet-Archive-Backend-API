@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.models.ExoUser;
 import com.dev.models.dtos.ExoUserDto;
+import com.dev.models.dtos.ImageRequest;
 import com.dev.services.AwsService;
 import com.dev.services.ExoUserService;
 import com.dev.utils.JwtUtil;
@@ -37,6 +38,15 @@ public class ExoUserController {
 		this.jwt = jwt;
 	}
 	
+	@GetMapping(path = "/{id}")
+	public ResponseEntity<ExoUserDto> getUserById(@PathVariable("id") int id) {
+
+		ExoUserDto dto = new ExoUserDto(userServ.findById(id).get());
+
+		return ResponseEntity.status(HttpStatus.OK).body(dto);
+
+	}
+	
 	@PutMapping("/update-img")
 	public ResponseEntity<Boolean> updateUser(@RequestBody ExoUser exo, 
 			@RequestHeader(value = "Authorization", required = true) String authorization) throws UnsupportedEncodingException
@@ -51,10 +61,10 @@ public class ExoUserController {
 	}
 	
 	@PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file,
-    		@RequestHeader(value = "Authorization", required = true) String authorization) throws UnsupportedEncodingException
+    public ResponseEntity<ImageRequest> uploadFile(@RequestParam(value = "file") MultipartFile file)
 	{	
-       return new ResponseEntity<>(awsServ.uploadFile(file), HttpStatus.OK);
+		ImageRequest resp = new ImageRequest(awsServ.uploadFile(file));
+       return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
     @GetMapping("/download/{fileName}")

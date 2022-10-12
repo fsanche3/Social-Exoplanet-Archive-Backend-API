@@ -23,7 +23,7 @@ public class PostService {
 	}
 	
 	public List<PostDto> findByPlanet(String planet){
-		List<Post> list = postRepo.findByPlanet(planet);
+		List<Post> list = postRepo.findByPlanetOrderByDateDesc(planet);
 		List<PostDto> ans = new ArrayList<>();
 		for(Post p: list) {
 			if(p.getParent_id() == 0) {
