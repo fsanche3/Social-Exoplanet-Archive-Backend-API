@@ -66,23 +66,6 @@ public class ExoUserController {
        return new ResponseEntity<>(resp, HttpStatus.OK);
     }
 
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
-        byte[] data = awsServ.downloadFile(fileName);
-        ByteArrayResource resource = new ByteArrayResource(data);
-        return ResponseEntity
-                .ok()
-                .contentLength(data.length)
-                .header("Content-type", "application/octet-stream")
-                .header("Content-disposition", "attachment; filename=\"" + fileName + "\"")
-                .body(resource);
-    }
-
-    @DeleteMapping("/delete/{fileName}")
-    public ResponseEntity<String> deleteFile(@PathVariable String fileName,
-			@RequestHeader(value = "Authorization", required = true) String authorization)
- {
-        return new ResponseEntity<>(awsServ.deleteFile(fileName), HttpStatus.OK);
-    }
+   
 
 }

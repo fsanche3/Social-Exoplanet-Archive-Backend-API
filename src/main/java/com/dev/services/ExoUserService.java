@@ -25,8 +25,9 @@ public class ExoUserService {
 		return userRepo.findById(id);
 	}
 	
-	public void upsert(ExoUser user) {
-		userRepo.save(user);
+	public ExoUser upsert(ExoUser user) {
+		return userRepo.save(user);
+
 	}
 	
 	public ExoUser verifyAuth(LoginRequest body) {

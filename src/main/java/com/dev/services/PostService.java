@@ -77,9 +77,8 @@ public class PostService {
 	}
 	
 	
-	public void upsert(Post post) {
-		postRepo.save(post);
-		return;
+	public Post upsert(Post post) {
+		return postRepo.save(post);
 	}
 	
 	public Optional<Post> findById(int id){
