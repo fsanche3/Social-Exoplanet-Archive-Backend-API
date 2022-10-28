@@ -1,7 +1,7 @@
 ## Social Exoplanet Archive: Backend/API
 
 ## FlowChart
-![FlowChart](social-exoplanet-archive_diagram(2).PNG)
+![FlowChart](sea-flow-chart.PNG)
 
 ## Tech Stack
 - [ ] Java 8
@@ -29,10 +29,10 @@ With this API User's(Secured with JWT tokens) have the possible use cases.
  - Like post's
  
 ## ER-Diagram
-![ER-Diagram](social-exoplanet-archive-er-diagram(2).PNG.PNG)
+![ER-Diagram](sea-er-diagram.PNG)
 
 ### Jacoco Test Overview (Focus: Controllers & Service layers)
-![Jacoco Test coverage for Controller/Service layers:](SEA-Test(2).PNG)
+![Jacoco Test coverage for Controller/Service layers:](sea-jac.PNG)
 
 
 ## Front End
