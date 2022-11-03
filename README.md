@@ -26,7 +26,7 @@ With this API User's(Secured with JWT tokens) have the possible use cases.
  - Add/Swap images
  - Create Posts
  - Reply to post's
- - Like post's
+ - Like/Unlike post's
  
 ## ER-Diagram
 ![ER-Diagram](sea-er-diagram.PNG)
